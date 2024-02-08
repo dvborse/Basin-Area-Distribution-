@@ -4,7 +4,7 @@ Created on Thu Sep  7 12:32:07 2023
 
 @author: Dnyanesh
 """
-## For just boundary
+## Calculate fractal dimension for boundary. Read .tif image of landscape
 
 import cv2
 import numpy as np
