@@ -4,16 +4,16 @@ Created on Thu Sep  7 12:32:07 2023
 
 @author: Dnyanesh
 """
-## Calculate fractal dimension for boundary. Read .tif image of landscape
+## For just boundary
 
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-names=['A&N','auckland','barbados','belle_tie','bermuda','cyprus','domicia','fiji','grenada','haldiboh','hawaii','honolulu','italy','jeju','kauai','mataram','mauritius','moroni','nusa','praia','reunion','taiwan','tasmania','teraciara']
-
+#names=['a&n','barbados','belle_tie','bermuda','cyprus','haldiboh','italy','jeju','kauai','mataram','mauritius','mauai','mauritius','moroni','nusa','port_francie','praia','reunion','taiwan','teraciara']
+names=['auckland','fiji','grenada','hawaii','tasmania'] # diferent nan values
 # Read the binary image (replace 'island.png' with your image file path)
-#tiff_image = cv2.imread('kauai_fdem.tif', cv2.IMREAD_UNCHANGED)
+#tiff_image = cv2.imread(f'{name}.tif', cv2.IMREAD_UNCHANGED)
 #binary_image = cv2.imread('fig_square.png', cv2.IMREAD_GRAYSCALE)
 #binary_image= cv2.bitwise_not(tiff_image) # inverting manually
 #binary_image=tiff_image<204
@@ -24,7 +24,13 @@ FD_values=[]
 
 for name in names:
     
-    binary_image_poly=np.load(f'{name}.npy')
+    #binary_image_poly=np.load(f'{name}.npy')
+    tiff_image = cv2.imread(f'{name}.tif', cv2.IMREAD_UNCHANGED)
+    #temp=tiff_image>0
+    temp=tiff_image<65535 # Check nan values from DEM to convert it in boolean form
+    grid_size=temp.shape
+    binary_image_poly=np.zeros((grid_size[0]+2,grid_size[1]+2))
+    binary_image_poly[1:-1,1:-1]=temp
     grid_size=binary_image_poly.shape
     shp_boundary=np.zeros((grid_size[0],grid_size[1]))
     
@@ -73,10 +79,13 @@ for name in names:
     plt.title(f'{name} FD boundary Y={coefficients[1]:.2f}*X^{fractal_dimension:.3f}', fontsize=14)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.savefig(f"FD_boundary_{name}_{fractal_dimension:.3f}.png", bbox_inches='tight',dpi=300)
+    plt.savefig(f"FD_boundary_{name}_{fractal_dimension:.3f}_new.png", bbox_inches='tight',dpi=300)
     #plt.legend(fontsize=12)
     plt.show()
     plt.close()
+    
+    plt.imshow(binary_image)
+    plt.savefig(f'{name}_binary_image_new.png')
     
     # Display the fractal dimension with increased font size
     #plt.annotate(f'Fractal Dimension: {fractal_dimension:.2f}', xy=(0.05, 0.8), xycoords='axes fraction', fontsize=14)
