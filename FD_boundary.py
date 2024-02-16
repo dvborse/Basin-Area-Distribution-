@@ -27,7 +27,7 @@ for name in names:
     #binary_image_poly=np.load(f'{name}.npy')
     tiff_image = cv2.imread(f'{name}.tif', cv2.IMREAD_UNCHANGED)
     #temp=tiff_image>0
-    temp=tiff_image<65535 # Check nan values from DEM to convert it in boolean form
+    temp=tiff_image<65535
     grid_size=temp.shape
     binary_image_poly=np.zeros((grid_size[0]+2,grid_size[1]+2))
     binary_image_poly[1:-1,1:-1]=temp
