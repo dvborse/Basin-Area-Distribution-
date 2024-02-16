@@ -11,7 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #names=['a&n','barbados','belle_tie','bermuda','cyprus','haldiboh','italy','jeju','kauai','mataram','mauritius','mauai','mauritius','moroni','nusa','port_francie','praia','reunion','taiwan','teraciara']
-names=['auckland','fiji','grenada','hawaii','tasmania'] # diferent nan values
+#names=['auckland','fiji','grenada','hawaii','tasmania'] # diferent nan values
+names=['Hawaii']
 # Read the binary image (replace 'island.png' with your image file path)
 #tiff_image = cv2.imread(f'{name}.tif', cv2.IMREAD_UNCHANGED)
 #binary_image = cv2.imread('fig_square.png', cv2.IMREAD_GRAYSCALE)
