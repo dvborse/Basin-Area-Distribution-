@@ -13,8 +13,9 @@ import matplotlib.pyplot as plt
 from dbfread import DBF
 
 #Names=['barbados','belle_tie','bermuda','fiji','grenada','italy','jeju','kauai']
-Names=['a&n','auckland','cyprus','haldiboh','hawaii','honolulu','port_francie','reunion','taiwan','tasmania']
-
+#Names=['a&n','auckland','cyprus','haldiboh','hawaii','honolulu','port_francie','reunion','taiwan','tasmania']
+Names=['Hawaii']
+       
 for name in Names:
 
     table = DBF(f'{name}.dbf')
